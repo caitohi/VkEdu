@@ -77,6 +77,8 @@ fun MainScreen(modifier: Modifier = Modifier) {
             Text("Открыть вторую Activity")
         }
 
+        Spacer(modifier = Modifier.height(8.dp))
+
         Button(
             onClick = {
                 val text = textState.value
@@ -101,6 +103,31 @@ fun MainScreen(modifier: Modifier = Modifier) {
             modifier = Modifier.fillMaxWidth()
         ) {
             Text("Позвонить другу")
+        }
+
+        Spacer(modifier = Modifier.height(8.dp))
+
+        Button(
+            onClick = {
+                val text = textState.value
+
+                if (text.isBlank()) {
+                    Toast.makeText(context, "Нет текста для отправки", Toast.LENGTH_SHORT).show()
+                    return@Button
+                }
+
+                val intent = Intent().apply {
+                    action = Intent.ACTION_SEND
+                    type = "text/plain"
+                    putExtra(Intent.EXTRA_TEXT, text)
+                }
+
+                val chooser = Intent.createChooser(intent, "Поделиться через...")
+                context.startActivity(chooser)
+            },
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Text("Поделиться текстом")
         }
     }
 }

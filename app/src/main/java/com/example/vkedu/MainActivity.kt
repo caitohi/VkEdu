@@ -1,6 +1,7 @@
 package com.example.vkedu
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.ComponentActivity
@@ -74,6 +75,32 @@ fun MainScreen(modifier: Modifier = Modifier) {
             modifier = Modifier.fillMaxWidth()
         ) {
             Text("Открыть вторую Activity")
+        }
+
+        Button(
+            onClick = {
+                val text = textState.value
+
+                if (text.isBlank()) {
+                    Toast.makeText(context, "Введите номер", Toast.LENGTH_SHORT).show()
+                    return@Button
+                }
+
+                val digitsOnly = text.replace("\\D".toRegex(), "")
+
+                if (digitsOnly.isEmpty()) {
+                    Toast.makeText(context, "Введите номер", Toast.LENGTH_SHORT).show()
+                    return@Button
+                }
+
+                val finalNumber = "+7${digitsOnly.take(10)}"
+
+                val intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:$finalNumber"))
+                context.startActivity(intent)
+            },
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Text("Позвонить другу")
         }
     }
 }

@@ -10,8 +10,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -30,16 +29,13 @@ import com.example.vkedu.ui.theme.VkEduTheme
 @Composable
 fun AppCard(
     app: App,
-    onClick: () -> Unit
+    onClick: () -> Unit,
+    showDivider: Boolean = true
 ) {
-    Card(
+    Column(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(horizontal = 16.dp, vertical = 8.dp)
-            .clickable { onClick() },
-        colors = CardDefaults.cardColors(containerColor = Color.White),
-        elevation = CardDefaults.cardElevation(2.dp),
-        shape = RoundedCornerShape(12.dp)
+            .clickable { onClick() }
     ) {
         Row(
             modifier = Modifier
@@ -79,6 +75,14 @@ fun AppCard(
                 )
             }
         }
+
+        if (showDivider) {
+            HorizontalDivider(
+                thickness = 1.dp,
+                color = Color.LightGray.copy(alpha = 0.5f),
+                modifier = Modifier.padding(horizontal = 16.dp)
+            )
+        }
     }
 }
 
@@ -86,9 +90,22 @@ fun AppCard(
 @Composable
 private fun PreviewAppCard() {
     VkEduTheme {
-        AppCard(
-            app = appsList[0],
-            onClick = {}
-        )
+        Column {
+            AppCard(
+                app = appsList[0],
+                onClick = {},
+                showDivider = true
+            )
+            AppCard(
+                app = appsList[1],
+                onClick = {},
+                showDivider = true
+            )
+            AppCard(
+                app = appsList[2],
+                onClick = {},
+                showDivider = false
+            )
+        }
     }
 }

@@ -11,5 +11,7 @@ data class App(
     val name: String,
     val description: String,
     val category: Category,
-    val iconRes: Int
+    val iconRes: Int,
+    val developer: String = "",
+    val screenshotUrls: List<String> = emptyList()
 )

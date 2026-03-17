@@ -1,6 +1,7 @@
 package com.example.vkedu.presentation.components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -23,7 +24,8 @@ import com.example.vkedu.ui.theme.VkEduTheme
 @Composable
 fun AppTopBar(
     isListView: Boolean,
-    onViewToggle: () -> Unit
+    onViewToggle: () -> Unit,
+    onLogoClick: () -> Unit
 ) {
     Row(
         modifier = Modifier
@@ -35,14 +37,18 @@ fun AppTopBar(
             painter = painterResource(id = R.drawable.ic_rustore_logo),
             contentDescription = null,
             tint = Color.White,
-            modifier = Modifier.size(32.dp)
+            modifier = Modifier
+                .size(32.dp)
+                .clickable { onLogoClick() }
         )
 
         Text(
             text = "RuStore",
             fontSize = 24.sp,
             color = Color.White,
-            modifier = Modifier.padding(start = 8.dp)
+            modifier = Modifier
+                .padding(start = 8.dp)
+                .clickable { onLogoClick() }
         )
 
         Spacer(modifier = Modifier.weight(1f))
@@ -73,7 +79,8 @@ private fun PreviewAppTopBar() {
         ) {
             AppTopBar(
                 isListView = true,
-                onViewToggle = {}
+                onViewToggle = {},
+                onLogoClick = {}
             )
         }
     }

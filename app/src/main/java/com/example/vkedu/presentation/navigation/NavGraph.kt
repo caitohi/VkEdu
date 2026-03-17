@@ -2,6 +2,7 @@ package com.example.vkedu.presentation.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -9,7 +10,8 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.vkedu.data.appsList
 import com.example.vkedu.presentation.screens.AppDetailScreen
-import com.example.vkedu.presentation.screens.AppsListScreen
+import com.example.vkedu.presentation.screens.appslist.AppsListScreen
+import com.example.vkedu.presentation.screens.appslist.AppsListViewModel
 
 @Composable
 fun NavGraph(modifier: Modifier = Modifier) {
@@ -21,7 +23,9 @@ fun NavGraph(modifier: Modifier = Modifier) {
         modifier = modifier
     ) {
         composable("apps_list") {
+            val viewModel: AppsListViewModel = viewModel()
             AppsListScreen(
+                viewModel = viewModel,
                 onAppClick = { app ->
                     navController.navigate("app_detail/${app.id}")
                 }

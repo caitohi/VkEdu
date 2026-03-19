@@ -34,22 +34,24 @@ fun AppDescription(
         Spacer(Modifier.height(8.dp))
         Text(
             text = description,
-            maxLines = if (collapsed) Int.MAX_VALUE else 1,
+            maxLines = if (collapsed) 1 else Int.MAX_VALUE,
             overflow = TextOverflow.Ellipsis,
+            fontSize = 16.sp,
+            lineHeight = 24.sp
         )
-        if (!collapsed) {
-            TextButton(
-                onClick = onReadMoreClick,
-                contentPadding = PaddingValues(horizontal = 0.dp)
-            ) {
-                Text(
-                    text = "Читать далее",
-                    color = MaterialTheme.colorScheme.primary,
-                )
-            }
+        TextButton(
+            onClick = onReadMoreClick,
+            contentPadding = PaddingValues(horizontal = 0.dp)
+        ) {
+            Text(
+                text = "Читать далее",
+                color = MaterialTheme.colorScheme.primary,
+            )
         }
     }
 }
+
+
 
 @Preview(showBackground = true)
 @Composable

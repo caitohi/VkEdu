@@ -1,4 +1,4 @@
-package com.example.vkedu.data
+package com.example.vkedu.domain.model
 
 enum class Category {
     FINANCE,

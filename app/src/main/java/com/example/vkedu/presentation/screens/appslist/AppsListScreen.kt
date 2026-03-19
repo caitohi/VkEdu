@@ -30,7 +30,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.example.vkedu.data.App
+import com.example.vkedu.domain.model.App
 import com.example.vkedu.presentation.components.AppCard
 import com.example.vkedu.presentation.components.AppTopBar
 

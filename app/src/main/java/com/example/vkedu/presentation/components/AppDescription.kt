@@ -14,7 +14,8 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.vkedu.data.appsList
+import com.example.vkedu.data.mapper.AppMapper
+import com.example.vkedu.data.source.LocalDataSource
 import com.example.vkedu.ui.theme.VkEduTheme
 
 @Composable
@@ -55,7 +56,7 @@ fun AppDescription(
 private fun PreviewShort() {
     VkEduTheme {
         AppDescription(
-            description = appsList[0].description,
+            description = AppMapper.toDomain(LocalDataSource.apps[0]).description,
             onReadMoreClick = {},
             collapsed = false,
         )

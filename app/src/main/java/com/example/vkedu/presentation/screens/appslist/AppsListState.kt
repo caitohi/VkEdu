@@ -1,6 +1,6 @@
 package com.example.vkedu.presentation.screens.appslist
 
-import com.example.vkedu.data.App
+import com.example.vkedu.domain.model.App
 
 sealed class AppsListState {
     data object Loading : AppsListState()

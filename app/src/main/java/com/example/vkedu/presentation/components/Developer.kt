@@ -15,7 +15,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
-import com.example.vkedu.data.appsList
+import com.example.vkedu.data.mapper.AppMapper
+import com.example.vkedu.data.source.LocalDataSource
 import com.example.vkedu.ui.theme.VkEduTheme
 
 @Composable
@@ -54,7 +55,7 @@ fun Developer(
 private fun Preview() {
     VkEduTheme {
         Developer(
-            name = appsList[0].developer.ifEmpty { "Неизвестно" },
+            name = AppMapper.toDomain(LocalDataSource.apps[0]).developer.ifEmpty { "Неизвестно" },
             onClick = {},
             modifier = Modifier.fillMaxWidth(),
         )

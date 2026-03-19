@@ -24,9 +24,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.vkedu.data.App
-import com.example.vkedu.data.Category
-import com.example.vkedu.data.appsList
+import com.example.vkedu.domain.model.App
+import com.example.vkedu.domain.model.Category
+import com.example.vkedu.data.mapper.AppMapper
+import com.example.vkedu.data.source.LocalDataSource
 import com.example.vkedu.ui.theme.VkEduTheme
 
 @Composable
@@ -98,7 +99,7 @@ private fun getCategoryText(category: Category): String = when (category) {
 private fun Preview() {
     VkEduTheme {
         AppDetailsHeader(
-            app = appsList[0],
+            app = AppMapper.toDomain(LocalDataSource.apps[0]),
             modifier = Modifier.fillMaxWidth(),
         )
     }

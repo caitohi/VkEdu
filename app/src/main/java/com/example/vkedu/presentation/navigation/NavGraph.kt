@@ -8,7 +8,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.example.vkedu.data.appsList
+import com.example.vkedu.data.mapper.AppMapper
+import com.example.vkedu.data.source.LocalDataSource
 import com.example.vkedu.presentation.screens.AppDetailScreen
 import com.example.vkedu.presentation.screens.appslist.AppsListScreen
 import com.example.vkedu.presentation.screens.appslist.AppsListViewModel
@@ -37,7 +38,8 @@ fun NavGraph(modifier: Modifier = Modifier) {
             arguments = listOf(navArgument("appId") { type = NavType.IntType })
         ) { backStackEntry ->
             val appId = backStackEntry.arguments?.getInt("appId") ?: 0
-            val app = appsList.find { it.id == appId } ?: appsList[0]
+            val appDto = LocalDataSource.apps.find { it.id == appId } ?: LocalDataSource.apps[0]
+            val app = AppMapper.toDomain(appDto)
 
             AppDetailScreen(
                 app = app,

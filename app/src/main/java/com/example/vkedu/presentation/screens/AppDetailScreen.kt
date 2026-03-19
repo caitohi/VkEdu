@@ -13,8 +13,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.vkedu.data.App
-import com.example.vkedu.data.appsList
+import com.example.vkedu.domain.model.App
+import com.example.vkedu.data.mapper.AppMapper
+import com.example.vkedu.data.source.LocalDataSource
 import com.example.vkedu.presentation.components.AppDescription
 import com.example.vkedu.presentation.components.AppDetailsHeader
 import com.example.vkedu.presentation.components.Developer
@@ -93,7 +94,7 @@ fun AppDetailScreen(
 private fun PreviewAppDetailScreen() {
     VkEduTheme {
         AppDetailScreen(
-            app = appsList[0],
+            app = AppMapper.toDomain(LocalDataSource.apps[0]),
             onBackClick = {}
         )
     }

@@ -2,7 +2,8 @@ package com.example.vkedu.presentation.screens.appslist
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.vkedu.data.AppsRepository
+import com.example.vkedu.domain.repository.AppsRepository
+import com.example.vkedu.data.repository.AppsRepositoryImpl
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -13,7 +14,7 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class AppsListViewModel(
-    private val repository: AppsRepository = AppsRepository()
+    private val repository: AppsRepository = AppsRepositoryImpl()
 ) : ViewModel() {
 
     private val _state = MutableStateFlow<AppsListState>(AppsListState.Loading)
@@ -26,10 +27,10 @@ class AppsListViewModel(
         loadApps()
     }
 
-    private fun loadApps(forceError: Boolean = false) {
+    private fun loadApps() {
         viewModelScope.launch {
             _state.value = AppsListState.Loading
-            repository.getApps(shouldError = forceError)
+            repository.getApps()
                 .catch { e ->
                     _state.value = AppsListState.Error(e.message ?: "Неизвестная ошибка")
                 }

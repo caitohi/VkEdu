@@ -3,7 +3,7 @@ package com.example.vkedu.presentation.screens.appslist
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.vkedu.domain.repository.AppsRepository
-import com.example.vkedu.data.repository.AppsRepositoryImpl
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -12,9 +12,11 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class AppsListViewModel(
-    private val repository: AppsRepository = AppsRepositoryImpl()
+@HiltViewModel
+class AppsListViewModel @Inject constructor(
+    private val repository: AppsRepository
 ) : ViewModel() {
 
     private val _state = MutableStateFlow<AppsListState>(AppsListState.Loading)

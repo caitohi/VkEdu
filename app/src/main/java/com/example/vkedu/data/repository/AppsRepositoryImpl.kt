@@ -7,8 +7,13 @@ import com.example.vkedu.domain.repository.AppsRepository
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class AppsRepositoryImpl : AppsRepository {
+@Singleton
+class AppsRepositoryImpl @Inject constructor(
+    private val mapper: AppMapper
+): AppsRepository {
     override fun getApps(): Flow<List<App>> = flow {
         delay(1000)
         val apps = LocalDataSource.apps.map { dto ->

@@ -2,7 +2,7 @@ package com.example.vkedu.presentation.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -24,7 +24,7 @@ fun NavGraph(modifier: Modifier = Modifier) {
         modifier = modifier
     ) {
         composable("apps_list") {
-            val viewModel: AppsListViewModel = viewModel()
+            val viewModel: AppsListViewModel = hiltViewModel()
             AppsListScreen(
                 viewModel = viewModel,
                 onAppClick = { app ->
@@ -39,7 +39,7 @@ fun NavGraph(modifier: Modifier = Modifier) {
         ) { backStackEntry ->
             val appId = backStackEntry.arguments?.getInt("appId") ?: 0
             val appDto = LocalDataSource.apps.find { it.id == appId } ?: LocalDataSource.apps[0]
-            val app = AppMapper.toDomain(appDto)
+            val app = AppMapper().toDomain(appDto)
 
             AppDetailScreen(
                 app = app,

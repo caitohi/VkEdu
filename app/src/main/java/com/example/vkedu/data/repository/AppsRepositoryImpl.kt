@@ -15,7 +15,7 @@ class AppsRepositoryImpl @Inject constructor(
     private val mapper: AppMapper
 ): AppsRepository {
     override fun getApps(): Flow<List<App>> = flow {
-        delay(1000)
+        val response = RetrofitClient.catalogApi.getCatalog()
         val apps = LocalDataSource.apps.map { dto ->
             AppMapper.toDomain(dto)
         }

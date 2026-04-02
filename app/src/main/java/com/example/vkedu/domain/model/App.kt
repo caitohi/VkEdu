@@ -13,5 +13,6 @@ data class App(
     val category: Category,
     val iconRes: Int,
     val developer: String = "",
-    val screenshotUrls: List<String> = emptyList()
+    val screenshotUrls: List<String> = emptyList(),
+    val isInWishlist: Boolean = false
 )
